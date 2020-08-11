@@ -114,11 +114,27 @@ const quotes =
   }
 ];
 
+console.log(quotes);
+
 /***
  * `getRandomQuote` function
 ***/
 
+/**
+ * This function will generate a random number which will be used to display a random quote on the website
+ * @param {This parameter is the array length of the quotes array} max 
+*/
+function getRandomIndex(max)
+{
+    return Math.floor(Math.random() * Math.floor(max)); 
+}
 
+
+for (let i = 0; i < 50; i++)
+{
+  let randNum = getRandomIndex(quotes.length);
+  console.log(quotes[randNum], randNum);
+}
 
 /***
  * `printQuote` function
@@ -133,4 +149,4 @@ const quotes =
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
 
-document.getElementById('load-quote').addEventListener("click", printQuote, false);
+//document.getElementById('load-quote').addEventListener("click", printQuote, false);
