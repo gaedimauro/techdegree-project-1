@@ -140,25 +140,42 @@ const quotes =
 ***/
 
 /**
- * This function will generate a random number which will be used to display a random quote on the website
+ * This function will generate a random number which will be used to display a 
+ * random quote on the website
+ * 
  * @param {This parameter is the array length of the quotes array} max 
 */
 const randomIndex = max => Math.floor(Math.random() * Math.floor(max));
 
-let randomQuote = randomIndex(quotes.length);
-
+let quoteIndex = randomIndex(quotes.length);
 
 /***
  * `printQuote` function
 ***/
 
+function printQuote(){
 
+  let quote = quotes[(randomIndex(quotes.length))]; 
 
+  console.log(quote.quote);
+  let html = ``;
 
+  html += 
+    `
+    <div id="quote-"
+      <div class="container">
+      <div id="quote-box" class="quote-box">
+      <p class="quote">${quote.quote}</p>
+      <p class="source">Patrick McKenzie<span class="citation">Twitter</span><span class="year">2016</span></p>
+      </div>
+    </div>
+  
+    ` 
+}
 
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
 
-//document.getElementById('load-quote').addEventListener("click", printQuote, false);
+document.getElementById('load-quote').addEventListener("click", printQuote, false);
