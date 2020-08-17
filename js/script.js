@@ -168,7 +168,7 @@ function printQuote(){
       html += `<span class="citation">${quote.citation}</span>`
     }
     if(quote.year != undefined){
-      html += `<span class="year">2016</span></p>`
+      html += `<span class="year">${quote.year}</span></p>`
     }     
     
     document.getElementById('quote-box').innerHTML = html;
