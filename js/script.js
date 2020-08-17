@@ -156,21 +156,17 @@ let quoteIndex = randomIndex(quotes.length);
 function printQuote(){
 
   let quote = quotes[(randomIndex(quotes.length))]; 
-
-  console.log(quote.quote);
+  
   let html = ``;
 
   html += 
     `
-    <div id="quote-"
-      <div class="container">
-      <div id="quote-box" class="quote-box">
-      <p class="quote">${quote.quote}</p>
-      <p class="source">Patrick McKenzie<span class="citation">Twitter</span><span class="year">2016</span></p>
-      </div>
-    </div>
-  
-    ` 
+    <p class="quote">${quote.quote}</p>
+    <p class="source">${quote.source} <span class="citation">${quote.citation}</span><span class="year">${quote.year}</span></p>
+    `; 
+      
+    document.getElementById('quote-box').innerHTML = html;
+
 }
 
 /***
