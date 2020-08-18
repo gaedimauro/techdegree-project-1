@@ -115,6 +115,21 @@ const quotes =
 ];
 
 
+/**
+ * getRandomColour function
+ * @param {*} max 
+ */
+function getRandomColour(){
+ 
+  const red = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  const blue =  Math.floor(Math.random() * 256);
+
+  document.body.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+}
+
+
+
 /***
  * `getRandomQuote` function
 ***/
@@ -126,7 +141,6 @@ const quotes =
  * @param {This parameter is the array length of the quotes array} max 
 */
 const getRandomQuote = max => Math.floor(Math.random() * Math.floor(max));
-getRandomQuote
 
 let quoteIndex = getRandomQuote(quotes.length);
 
@@ -151,6 +165,8 @@ function printQuote(){
     if(quote.year != undefined){
       html += `<span class="year">${quote.year}</span></p>`
     }     
+
+    getRandomColour();
     
     document.getElementById('quote-box').innerHTML = html;
 }
