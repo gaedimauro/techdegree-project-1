@@ -163,7 +163,6 @@ const quotes = [
    * @param {This parameter is the array length of the quotes array} max 
    */
   const getRandomQuote = max => Math.floor(Math.random() * Math.floor(max));
-  let quoteIndex = getRandomQuote(quotes.length);
 
   /***
    * `printQuote` function
@@ -171,6 +170,7 @@ const quotes = [
   function printQuote()
   {
     let quote = quotes[(getRandomQuote(quotes.length))];
+
     let html = ``;
     html += `
       <p class="quote">${quote.quote}</p>
