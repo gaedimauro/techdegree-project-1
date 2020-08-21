@@ -3,18 +3,18 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-
- /**
-  * Quotes Array 
-  * @property {String}           Quote     - The quote 
-  * @property {String}           Source    - The author
-  * @property {String}           Citation  - reference to a book
-  * @property {int}              Year      - Year quote was recorded
-  * @property {Array of String}  Tags      - Tags are keywords  
-  * 
-  * @property Quote, Source - Must be never be equal to null 
-  * @property Citation, Year, Tags - Optional can be equal to null and/or not listed in entry
-  */
+/**
+ * Quotes Array 
+ * This is an array of objects which in this case is quotes 
+ * @property {String}           Quote     - The quote 
+ * @property {String}           Source    - The author
+ * @property {String}           Citation  - reference to a book
+ * @property {int}              Year      - Year quote was recorded
+ * @property {Array of String}  Tags      - Tags are keywords  
+ * 
+ * @property Quote, Source - Must be never be equal to null 
+ * @property Citation, Year, Tags - Optional can be equal to null and/or not listed in entry
+ */
 const quotes = [
   {
     quote: 'Happy Hunger Games! And may the odds be ever in your favor.',
@@ -36,10 +36,10 @@ const quotes = [
     source: 'Peter Marshall',
   },
   {
-    quote: "It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends",
+    quote: "We are only as strong as we are united, as weak as we are divided.",
     source: 'J.K. Rowling',
-    citation: "Harry Potter & the Philosopher's Stone",
-    year: 1997,
+    citation: "Harry Potter & the Goblet of Fire",
+    year: 2000,
     tags: ['#Novelist']
   },
   {
@@ -55,11 +55,6 @@ const quotes = [
     citation: 'The Minpins',
     year: 1991,
     tags: ['#Novelist']
-  },
-  {
-    quote: 'I’ve missed more than 9000 shots in my career. I’ve lost almost 300 games. 26 times, I’ve been trusted to take the game winning shot and missed. I’ve failed over and over and over again in my life. And that is why I succeed.',
-    source: 'Michael Jordan',
-    tags: ['#Famous_People', '#Sports_Star', '#Motivational']
   },
   {
     quote: 'Be yourself and people will like you',
@@ -111,17 +106,10 @@ const quotes = [
     source: 'Nelson Mandela',
   },
   {
-    quote: 'We believe in ordinary acts of bravery, in the courage that drives one person to stand up for another.',
-    source: 'Veronica Roth',
-    citation: 'Divergent',
-    year: 2011,
-    tags: ['#Novelist']
-  },
-  {
-    quote: 'There is never a time or place for true love. It happens accidentally, in a heartbeat, in a single flashing, throbbing moment.',
-    source: 'Sarah Dessen',
-    citation: 'The Truth About Forever',
-    year: 2006,
+    quote: "It is the quality of one’s convictions that determines success, not the number of followers.",
+    source: 'J.K. Rowling',
+    citation: 'Harry Potter & the Deathly Hallows',
+    year: 2007,
     tags: ['#Novelist']
   },
   {
@@ -141,12 +129,30 @@ const quotes = [
     source: 'Eleanor Roosevelt',
     tags: ['#Famous_People', '#Motivational']
   }];
-  
 
-  
   /**
-   * getRandomColour function
-   * @param {*} max 
+   * @property {int} intervalID - Javascript provided function
+   *
+   * The setInterval() method calls a function or evaluates an expression at specified intervals 
+   * (in milliseconds).
+   * 
+   * 1000 ms = 1 second. 
+   * 10000ms = 10seconds
+   */
+  var intervalID = window.setInterval(updateQuote, 10000);
+
+  /**
+   * getRandomColor() Function
+   * This function generates 3 random numbers, which is then used to creat a RGB
+   * numbers which then changes the color of the index.html 
+   *      
+   * @property {int} Red   - Stores the random number generated for red 
+   * @property {int} Green - Stores the random number generated for green 
+   * @property {int} Blue  - Stores the random number generated for blue  
+   *
+   * Function generates random values for red, green and blue then 
+   * uses it to change background color of index.html 
+   *  
    */
   function getRandomColor()
   {
@@ -155,27 +161,61 @@ const quotes = [
     const blue = Math.floor(Math.random() * 256);
     document.body.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
   }
-  
+
   /**
-   * This function will generate a random number which will be used to display a 
-   * random quote on the website
+   * getRandomQuote() Function  
    * 
-   * @param {This parameter is the array length of the quotes array} max 
+   * This function gets a random number which will be used to get quote in the printQuote function 
+   *   
+   * Function generates a random number which will be used to display a 
+   * random quote in index.html 
+   * 
+   * @param {int} max - This parameter is the array length of the quotes array 
    */
   const getRandomQuote = max => Math.floor(Math.random() * Math.floor(max));
-
-  /***
-   * `printQuote` function
-   ***/
+ 
+  /**
+   * printQuote() Function 
+   * This Function prints the quote to index.html file by using previous function
+   * to get a random number and using that getting a quote from the array checking all
+   * variable and printing the information out accordly
+   * 
+   * DETAILS OF HOW CODE EXECUTES 
+   *  
+   * @property {String}           html      
+   * Stores the html that is then generated and is then uses javascript provided property
+   * HTML DOM innerHTML Property
+   * 
+   * @property {Quote}            Quote  - object created and stored in quotes array
+   * Quote is generated by using function:
+   * 
+   * getRandomQuote(max) - calls the getRandomQuote 
+   * @property {max}  int - quotes.length which is the length of the array
+   * another javascript provided function  
+   * 
+   * Conditional states are used as there are 3 optional fields in the quotes.array
+   * 
+   * CITITATION  
+   * if the array Has value entered at CITATION that value will be entered to the html variable, however if not html remains unaltered   
+   * 
+   * YEAR  
+   * if the array Has value entered at YEAR that value will be entered to the html variable, however if not html remains unaltered   
+   * 
+   * TAGS
+   * if the array Has value entered at TAGS that value will be entered to the html variable, however if not html remains unaltered   
+   * 
+   * getRandomColor()  - calls the getRandomColor Function
+   * 
+   * Then html will be pushed to and replace the current html information
+   */
   function printQuote()
   {
     let quote = quotes[(getRandomQuote(quotes.length))];
-
     let html = ``;
     html += `
-      <p class="quote">${quote.quote}</p>
-      <p class="source">${quote.source} 
-      `;
+        <p class="quote">${quote.quote}</p>
+        <p class="source">${quote.source} 
+        `;
     if (quote.citation != undefined)
     {
       html += `<span class="citation">${quote.citation}</span>`
@@ -192,17 +232,33 @@ const quotes = [
     getRandomColor();
     document.getElementById('quote-box').innerHTML = html;
   }
-  
-  var intervalID = window.setInterval(updateQuote, 10000);
-  
+
+  /**
+   * updateQuote() Function  
+   * 
+   * This Function updates the quote and get a random color and updates the html color 
+   *  
+   * DETAILS OF HOW CODE EXECUTES 
+   * printQuote()      - calls the printQuote Function 
+   * getRandomColor()  - calls the getRandomColor Function
+   * 
+   * Function calls the above two functions to update the color or the page
+   * as well as accessing a new quote from the quote array 
+   */
   function updateQuote()
   {
     printQuote();
     getRandomColor();
   }
 
-  /***
-   * click event listener for the print quote button
-   * DO NOT CHANGE THE CODE BELOW!!
-   ***/
+  /**
+  click event listener for the print quote button
+  DO NOT CHANGE THE CODE BELOW!!
+   
+  PLEASE NOTE
+  I would prefer the below code use updateQuote instead of printQuote, 
+  as i currently have to put getRandomColor(); Inside printQUote(), which 
+  personally i feel is messy code.
+  */
+ 
   document.getElementById('load-quote').addEventListener("click", printQuote, false);
