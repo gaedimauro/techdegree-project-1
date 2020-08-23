@@ -142,7 +142,7 @@ const quotes = [
   var intervalID = window.setInterval(updateQuote, 10000);
 
   /**
-   * getRandomColor() Function
+   * randomizeBackgroundColor() Function
    * This function generates 3 random numbers, which is then used to creat a RGB
    * numbers which then changes the color of the index.html 
    *      
@@ -154,7 +154,7 @@ const quotes = [
    * uses it to change background color of index.html 
    *  
    */
-  function getRandomColor()
+  function randomizeBackgroundColor()
   {
     const red = Math.floor(Math.random() * 256);
     const green = Math.floor(Math.random() * 256);
@@ -163,20 +163,39 @@ const quotes = [
   }
 
   /**
-   * getRandomQuote() Function  
+   * getRandomNumber() Function  
    * 
-   * This function gets a random number which will be used to get quote in the printQuote function 
-   *   
-   * Function generates a random number which will be used to display a 
-   * random quote in index.html 
-   * 
+   * This function gets a random number which will be used to om getRandomQuote(arr)
+   *  
    * @param {int} max - This parameter is the array length of the quotes array 
    */
-  const getRandomQuote = max => Math.floor(Math.random() * Math.floor(max));
- 
+  const getRandomNumber = max => Math.floor(Math.random() * Math.floor(max));
+   
+  /**
+   * getRandomQuote(arr) Function  
+   * 
+   * @param {array} arr - This parameter is the array of quotes 
+   * 
+   * This function calls the 
+   * getRandomNumber()  - calls the getRandomNumber() Function
+   *   
+   * This random number is used to get a random quote from quotes array and 
+   * return a quote 
+   * 
+   * Function calls getRandomNumber(), which generates a random number and then is used to getRandomQuote()
+   * which will be used to display a random quote in index.html 
+   * 
+   * @return {array} quote - This variable is the quote generated
+   */
+  function getRandomQuote(arr){
+    let quote = quotes[getRandomNumber(quotes.length)];
+    return quote; 
+  }
+
+
   /**
    * printQuote() Function 
-   * This Function prints the quote to index.html file by using previous function
+   * This Function prints the quote to index.html file by using two previous functions
    * to get a random number and using that getting a quote from the array checking all
    * variable and printing the information out accordly
    * 
@@ -204,13 +223,13 @@ const quotes = [
    * TAGS
    * if the array Has value entered at TAGS that value will be entered to the html variable, however if not html remains unaltered   
    * 
-   * getRandomColor()  - calls the getRandomColor Function
+   * randomizeBackgroundColor()  - calls the randomizeBackgroundColor Function
    * 
    * Then html will be pushed to and replace the current html information
    */
   function printQuote()
   {
-    let quote = quotes[(getRandomQuote(quotes.length))];
+    let quote = getRandomQuote(quotes)
     let html = ``;
     html += `
         <p class="quote">${quote.quote}</p>
@@ -229,7 +248,7 @@ const quotes = [
       html += `<span class="tags">${quote.tags.join(', ')}</span>`
     }
     html += '</p>';
-    getRandomColor();
+    randomizeBackgroundColor();
     document.getElementById('quote-box').innerHTML = html;
   }
 
@@ -240,7 +259,7 @@ const quotes = [
    *  
    * DETAILS OF HOW CODE EXECUTES 
    * printQuote()      - calls the printQuote Function 
-   * getRandomColor()  - calls the getRandomColor Function
+   * randomizeBackgroundColor  - calls the randomizeBackgroundColor Function
    * 
    * Function calls the above two functions to update the color or the page
    * as well as accessing a new quote from the quote array 
@@ -248,7 +267,7 @@ const quotes = [
   function updateQuote()
   {
     printQuote();
-    getRandomColor();
+    randomizeBackgroundColor();
   }
 
   /**
@@ -257,7 +276,7 @@ const quotes = [
    
   PLEASE NOTE
   I would prefer the below code use updateQuote instead of printQuote, 
-  as i currently have to put getRandomColor(); Inside printQUote(), which 
+  as i currently have to put randomizeBackgroundColor(); Inside printQUote(), which 
   personally i feel is messy code.
   */
  
